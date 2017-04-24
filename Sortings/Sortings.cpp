@@ -57,3 +57,43 @@ int Sortings::partition(int s, int e, vector<int>& nums) {
 	return s;
 }
 /* end of quick sort */
+
+/* merge sort functions */
+void Sortings::mergeSort(vector<int>& nums) {
+	mergeSortHelper(0, nums.size() - 1, nums);
+}
+
+void Sortings::mergeSortHelper(int s, int e, vector<int>& nums) {
+	if (s >= e) {
+		return;
+	}
+	int mid = s + (e - s) / 2;
+	mergeSortHelper(s, mid, nums);
+	mergeSortHelper(mid + 1, e, nums);
+	vector<int> merged;
+	int a = s;
+	int b = mid + 1;
+	while (a <= mid && b <= e) {
+		if (nums[a] < nums[b]) {
+			merged.push_back(nums[a]);
+			a += 1;
+		}
+		else {
+			merged.push_back(nums[b]);
+			b += 1;
+		}
+	}
+	for (a; a <= mid; ++a) {
+		merged.push_back(nums[a]);
+	}
+	for (b; b <= e; ++b) {
+		merged.push_back(nums[b]);
+	}
+	int k = 0;
+	for (int i = s; i <= e; ++i) {
+		nums[i] = merged[k];
+		k += 1;
+	}
+}
+
+/* end of merge sort */

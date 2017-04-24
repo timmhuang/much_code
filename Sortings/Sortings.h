@@ -8,9 +8,11 @@ class Sortings{
 	void swap(int, int, vector<int>&);
 	int partition(int, int, vector<int>&);
 	void quickSortHelper(int, int, vector<int>&);
+	void mergeSortHelper(int, int, vector<int>&);
 public:
 	void countingSort(vector<int>&, int, int);
 	void quickSort(vector<int>&);
+    void mergeSort(vector<int>&);
 };
 
 #endif
