@@ -69,14 +69,25 @@ int main(int argc, char *argv[]) {
 	Graph g = buildGraph(in);
 
 	int start = 0;
-	vector<int> dist = g.bellmanFord(start);
+	g.dijkstra(start);
 	cout << "The shortest paths costs starting from node: " << start << endl;
-	for (int i = 0; i < dist.size(); ++i) {
+	for (int i = 0; i < g.getVertices().size(); ++i) {
 		printf("%4d", i);
 	}
 	cout << endl;
-	for (int d : dist) {
-		printf("%4d", d);
+	for (vertex v : g.getVertices()) {
+		printf("%4d", v.val);
+	}
+	cout << endl;
+
+	int dest = 1 + rand() % (g.getVertexCount() - 1);
+	cout << "Shorted Path from " << start << " to " << dest << " is: " << endl;
+	vector<int> path = g.getPath(start, dest);
+	for (int i = 0; i < path.size(); ++i) {
+		cout << path[i];
+		if (path[i] != dest) {
+			cout << " -> ";
+		}
 	}
 	cout << endl;
 
